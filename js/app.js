@@ -94,6 +94,41 @@ function svgI(name, size) {
     quiz:    '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" fill="#22c55e" opacity=".15" stroke="#22c55e" stroke-width="2"/><path d="M8 12l3 3 5-6" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     chart:   '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"><rect x="3" y="12" width="4" height="9" rx="1" fill="#8b5cf6" opacity=".3"/><rect x="10" y="6" width="4" height="15" rx="1" fill="#8b5cf6" opacity=".5"/><rect x="17" y="2" width="4" height="19" rx="1" fill="#8b5cf6" opacity=".7"/></svg>',
     cap:     '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><path d="M12 3L2 9l10 6 10-6-10-6z" fill="#3b82f6"/><path d="M20 9v7" stroke="#3b82f6" stroke-width="2"/><path d="M6 11.5v4.5c0 2 2.69 3 6 3s6-1 6-3v-4.5" stroke="#3b82f6" stroke-width="2"/></svg>',
+
+    // Feedback
+    party:   '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#22c55e" opacity=".15"/><path d="M8 14s1.5 2 4 2 4-2 4-2" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="10" r="1.2" fill="#22c55e"/><circle cx="15" cy="10" r="1.2" fill="#22c55e"/><path d="M5 3l1 3M19 3l-1 3M3 8l3 .5M21 8l-3 .5" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/><circle cx="5" cy="2" r="1" fill="#f59e0b"/><circle cx="19" cy="2" r="1" fill="#ec4899"/><circle cx="2" cy="7" r="1" fill="#3b82f6"/></svg>',
+    think:   '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#f59e0b" opacity=".15"/><circle cx="9" cy="10" r="1.2" fill="#f59e0b"/><circle cx="15" cy="10" r="1.2" fill="#f59e0b"/><path d="M9 15h6" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/><path d="M17 3l1 2M7 4l-1 2" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/></svg>',
+    trophy:  '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><path d="M6 2h12v6a6 6 0 01-12 0V2z" fill="#f59e0b"/><path d="M6 4H3v2a3 3 0 003 3M18 4h3v2a3 3 0 01-3 3" stroke="#d97706" stroke-width="1.5"/><rect x="9" y="14" width="6" height="3" fill="#d97706"/><rect x="7" y="17" width="10" height="3" rx="1" fill="#f59e0b"/></svg>',
+
+    // Misc UI
+    timer:   '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M10 2h4"/><path d="M12 2v2"/></svg>',
+    trash:   '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>',
+    confetti:'<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><rect x="8" y="8" width="8" height="10" rx="2" fill="#f59e0b" opacity=".3"/><path d="M4 2l2 4M20 3l-2 3M2 10l3 1M22 10l-3 1" stroke="#ec4899" stroke-width="2" stroke-linecap="round"/><circle cx="5" cy="1" r="1.5" fill="#3b82f6"/><circle cx="20" cy="2" r="1.5" fill="#22c55e"/><circle cx="1" cy="9" r="1.5" fill="#f59e0b"/><circle cx="23" cy="9" r="1.5" fill="#8b5cf6"/><path d="M12 4v3M9 6l1 2M15 6l-1 2" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/></svg>',
+    ruler:   '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><rect x="3" y="8" width="18" height="8" rx="1"/><path d="M7 8v3M11 8v5M15 8v3M19 8v3"/></svg>',
+    pin:     '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><path d="M12 22s-6-6.5-6-11a6 6 0 1112 0c0 4.5-6 11-6 11z" fill="#ef4444" opacity=".8"/><circle cx="12" cy="11" r="2.5" fill="#fff"/></svg>',
+    cube3d:  '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><rect x="5" y="5" width="12" height="12" rx="1" fill="#3b82f6" opacity=".6"/><rect x="8" y="2" width="12" height="12" rx="1" fill="#3b82f6" opacity=".3"/><path d="M5 5l3-3M17 5l3-3M5 17l3-3" stroke="#3b82f6" stroke-width="1"/></svg>',
+    shapes:  '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><circle cx="8" cy="16" r="5" fill="#3b82f6" opacity=".6"/><rect x="13" y="11" width="9" height="9" rx="1" fill="#22c55e" opacity=".6"/><polygon points="12 2 17 11 7 11" fill="#f59e0b" opacity=".7"/></svg>',
+    hand:    '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><path d="M18 11V6a1 1 0 00-2 0v5M14 10V4a1 1 0 00-2 0v6M10 10V5a1 1 0 00-2 0v5M6 11V8a1 1 0 012 0" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/><path d="M18 11a4 4 0 014 4v1a6 6 0 01-6 6H9a6 6 0 01-5-2.68" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/></svg>',
+    hash:    '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round"><path d="M4 9h16M4 15h16M10 3v18M14 3v18"/></svg>',
+    link:    '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"><path d="M10 14a4 4 0 005.66 0l3-3a4 4 0 00-5.66-5.66l-1 1"/><path d="M14 10a4 4 0 00-5.66 0l-3 3a4 4 0 005.66 5.66l1-1"/></svg>',
+    scale:   '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"><path d="M12 3v18"/><path d="M5 7l7-4 7 4"/><path d="M3 13l2-6 2 6a3 3 0 01-4 0zM17 13l2-6 2 6a3 3 0 01-4 0z"/></svg>',
+    ball:    '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#ef4444" opacity=".7"/><path d="M12 2a10 10 0 010 20" stroke="#fff" stroke-width="1" opacity=".4"/><ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="#fff" stroke-width="1" opacity=".3"/></svg>',
+    pie:     '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#f59e0b" opacity=".3"/><path d="M12 2a10 10 0 0110 10H12V2z" fill="#f59e0b" opacity=".7"/><circle cx="12" cy="12" r="10" stroke="#d97706" stroke-width="1.5" fill="none"/><line x1="12" y1="2" x2="12" y2="12" stroke="#d97706" stroke-width="1.5"/><line x1="12" y1="12" x2="22" y2="12" stroke="#d97706" stroke-width="1.5"/></svg>',
+    medal:   '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><path d="M8 2l2 6M16 2l-2 6" stroke="#3b82f6" stroke-width="2"/><circle cx="12" cy="14" r="6" fill="#f59e0b"/><circle cx="12" cy="14" r="3.5" fill="#fbbf24"/><text x="12" y="16" text-anchor="middle" font-size="5" font-weight="800" fill="#92400e" font-family="sans-serif">1</text></svg>',
+    target:  '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#ef4444" stroke-width="2"/><circle cx="12" cy="12" r="6" stroke="#ef4444" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="#ef4444"/></svg>',
+    twins:   '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><circle cx="8" cy="8" r="4" fill="#3b82f6" opacity=".5"/><circle cx="16" cy="8" r="4" fill="#22c55e" opacity=".5"/><path d="M4 20v-1a4 4 0 014-4h0M16 15a4 4 0 014 4v1" stroke="#64748b" stroke-width="2"/><path d="M12 15a4 4 0 00-4 4v1h8v-1a4 4 0 00-4-4z" fill="#8b5cf6" opacity=".3"/></svg>',
+    calendar:'<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="3" stroke="#8b5cf6" stroke-width="2"/><path d="M3 10h18" stroke="#8b5cf6" stroke-width="2"/><path d="M8 2v4M16 2v4" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"/><rect x="7" y="14" width="3" height="3" rx=".5" fill="#8b5cf6" opacity=".4"/><rect x="14" y="14" width="3" height="3" rx=".5" fill="#8b5cf6" opacity=".4"/></svg>',
+    coin:    '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#f59e0b" opacity=".7"/><circle cx="12" cy="12" r="7" fill="#fbbf24"/><text x="12" y="16" text-anchor="middle" font-size="10" font-weight="900" fill="#92400e" font-family="sans-serif">đ</text></svg>',
+    barChart:'<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><rect x="3" y="14" width="4" height="8" rx="1" fill="#3b82f6" opacity=".7"/><rect x="10" y="8" width="4" height="14" rx="1" fill="#22c55e" opacity=".7"/><rect x="17" y="4" width="4" height="18" rx="1" fill="#f59e0b" opacity=".7"/></svg>',
+    weight:  '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><path d="M5 22l2-14h10l2 14H5z" fill="#64748b" opacity=".6"/><circle cx="12" cy="6" r="4" fill="#64748b" opacity=".4"/><text x="12" y="18" text-anchor="middle" font-size="7" font-weight="800" fill="#fff" font-family="sans-serif">kg</text></svg>',
+    bridge:  '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><path d="M2 18h20" stroke="#64748b" stroke-width="2"/><path d="M4 18c0-6 4-10 8-10s8 4 8 10" stroke="#3b82f6" stroke-width="2" fill="none"/><path d="M8 18V12M12 18V8M16 18V12" stroke="#3b82f6" stroke-width="1.5"/></svg>',
+    blocks:  '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><rect x="3" y="12" width="8" height="8" rx="1" fill="#3b82f6" opacity=".6"/><rect x="13" y="12" width="8" height="8" rx="1" fill="#22c55e" opacity=".6"/><rect x="8" y="4" width="8" height="8" rx="1" fill="#f59e0b" opacity=".6"/></svg>',
+    measure: '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><rect x="2" y="8" width="20" height="8" rx="2" stroke="#22c55e" stroke-width="2"/><path d="M6 8v3M10 8v5M14 8v3M18 8v3" stroke="#22c55e" stroke-width="1.5"/></svg>',
+    eye:     '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>',
+    puzzle:  '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><path d="M4 7h3a2 2 0 100-4h0a2 2 0 100 4h3v3a2 2 0 104 0V7h3a1 1 0 011 1v3a2 2 0 100 4h0a2 2 0 100-4H17v3a1 1 0 01-1 1h-3a2 2 0 10-4 0H4a1 1 0 01-1-1v-3a2 2 0 110-4 2 2 0 010-4V8a1 1 0 011-1z" fill="#22c55e" opacity=".6" stroke="#22c55e" stroke-width="1.5"/></svg>',
+    search:  '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"><circle cx="10" cy="10" r="7"/><path d="M16 16l5 5"/></svg>',
+    lightbulb:'<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><path d="M9 21h6M12 3a6 6 0 014 10.5V17H8v-3.5A6 6 0 0112 3z" fill="#f59e0b" opacity=".3" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/></svg>',
+    corner:  '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><path d="M4 20V8l8-6 8 6v12" stroke="#8b5cf6" stroke-width="2"/><circle cx="4" cy="20" r="2" fill="#8b5cf6"/><circle cx="12" cy="2" r="2" fill="#ef4444"/><circle cx="20" cy="20" r="2" fill="#8b5cf6"/></svg>',
   };
   return icons[name] || '';
 }
@@ -104,6 +139,20 @@ function svgStars(count, max) {
   let h = '';
   for (let i = 0; i < max; i++) h += svgI(i < count ? 'star' : 'starEmpty', 20);
   return '<span class="svg-stars">' + h + '</span>';
+}
+
+// Map unit/brain-game emoji icons to SVG names
+const ICON_MAP = {
+  '📍':'pin','📦':'cube3d','🔵':'shapes','🧩':'puzzle','🏀':'ball','🥧':'pie',
+  '✋':'hand','🔟':'hash','🔗':'link','⚖️':'scale','🏅':'medal','🎯':'target',
+  '👯':'twins','📝':'pencil','📅':'calendar','💰':'coin','📊':'barChart',
+  '📏':'measure','🔍':'search','👀':'eye','🌉':'bridge','🏗️':'blocks',
+  '🧮':'ruler','🔄':'retry','2️⃣':'hash','➕':'quiz','➖':'quiz',
+};
+function unitIcon(emoji, size) {
+  const mapped = ICON_MAP[emoji];
+  if (mapped) return svgI(mapped, size || 28);
+  return '<span class="unit-emoji">' + emoji + '</span>';
 }
 
 // Keep backward compat
@@ -192,7 +241,7 @@ function openWorld(worldId) {
     const prevDone = idx === 0 || progress.completed[currentWorld.units[idx - 1].id];
 
     return '<div class="unit-card ' + (prevDone ? '' : 'unit-locked') + '" onclick="' + (prevDone ? 'openUnit(\'' + u.id + '\')' : '') + '">' +
-      '<div class="unit-icon">' + u.icon + '</div>' +
+      '<div class="unit-icon">' + unitIcon(u.icon, 28) + '</div>' +
       '<div class="unit-info">' +
       '<div class="unit-name">' + u.name + '</div>' +
       '<div class="unit-stars">' + starHTML + '</div>' +
@@ -227,7 +276,7 @@ function showUnitMenu() {
   const starHTML = svgStars(stars);
 
   el.innerHTML =
-    '<div class="um-header"><span class="um-icon">' + currentUnit.icon + '</span> ' + currentUnit.name + '</div>' +
+    '<div class="um-header"><span class="um-icon">' + unitIcon(currentUnit.icon, 32) + '</span> ' + currentUnit.name + '</div>' +
     '<div class="um-stars">' + starHTML + '</div>' +
     '<div class="um-buttons">' +
     '<button class="um-btn um-lesson" onclick="startLesson()">' + svgI('book',24) + ' Bài Học</button>' +
@@ -290,9 +339,9 @@ function renderLessonStep() {
     }
     if (step.props) {
       html += '<div class="ls-props">';
-      if (step.props.sides !== undefined) html += '<span class="ls-prop">📐 Cạnh: ' + step.props.sides + '</span>';
-      if (step.props.corners !== undefined) html += '<span class="ls-prop">📌 Góc: ' + step.props.corners + '</span>';
-      if (step.props.note) html += '<span class="ls-prop">💡 ' + step.props.note + '</span>';
+      if (step.props.sides !== undefined) html += '<span class="ls-prop">' + svgI('ruler',14) + ' Cạnh: ' + step.props.sides + '</span>';
+      if (step.props.corners !== undefined) html += '<span class="ls-prop">' + svgI('corner',14) + ' Góc: ' + step.props.corners + '</span>';
+      if (step.props.note) html += '<span class="ls-prop">' + svgI('lightbulb',14) + ' ' + step.props.note + '</span>';
       html += '</div>';
     }
   }
@@ -446,7 +495,7 @@ function showFeedback(result) {
 
   playSound(result.isCorrect ? 'correct' : 'wrong');
   const cls = result.isCorrect ? 'fb-correct' : 'fb-wrong';
-  const icon = result.isCorrect ? '🎉' : '😊';
+  const icon = result.isCorrect ? svgI('party', 48) : svgI('think', 48);
   const text = result.isCorrect ? 'Đúng rồi! Giỏi lắm!' : 'Chưa đúng — Xem lại nhé!';
 
   let html = '<div class="feedback ' + cls + '">' +
@@ -483,14 +532,14 @@ function showResults(mode) {
     '<div class="r-score">' + results.correct + ' / ' + results.total + '</div>' +
     '<div class="r-pct">' + results.pct + '%</div>' +
     '<div class="r-msg">' + msg + '</div>' +
-    '<div class="r-time">⏱️ ' + timeStr + '</div>' +
+    '<div class="r-time">' + svgI('timer',16) + ' ' + timeStr + '</div>' +
     '<div class="r-xp">+' + (results.correct * GAME_CONFIG.xpPerCorrect) + ' XP</div>';
 
   // Boss completion
   if (mode === 'boss' && results.pct >= 60 && currentWorld) {
     progress.bossCompleted[currentWorld.id] = true;
     saveProgress(progress);
-    html += '<div class="r-boss-win">🎊 Hoàn thành thế giới: ' + currentWorld.name + '!</div>';
+    html += '<div class="r-boss-win">' + svgI('confetti',24) + ' Hoàn thành thế giới: ' + currentWorld.name + '!</div>';
   }
 
   html += '<div class="r-actions">';
@@ -536,7 +585,7 @@ function openBrainGames() {
   el.innerHTML = allGames.map(bg => {
     const done = progress.brainGames[bg.id]?.completed;
     return '<div class="bg-card" onclick="startBrainGame(\'' + bg.id + '\')">' +
-      '<div class="bg-icon">' + bg.icon + '</div>' +
+      '<div class="bg-icon">' + unitIcon(bg.icon, 24) + '</div>' +
       '<div class="bg-info">' +
       '<div class="bg-name">' + bg.name + (done ? ' ' + svgI('check',16) : '') + '</div>' +
       '<div class="bg-source">' + bg.source + '</div>' +
@@ -637,12 +686,12 @@ function openParent() {
   days.forEach(([date, active]) => {
     const d = new Date(date);
     const label = d.getDate() + '/' + (d.getMonth() + 1);
-    html += '<div class="pd-day ' + (active ? 'pd-active' : '') + '" title="' + label + '">' + (active ? '🟢' : '⚪') + '</div>';
+    html += '<div class="pd-day ' + (active ? 'pd-active' : '') + '" title="' + label + '">' + (active ? '<span class="hm-dot hm-active"></span>' : '<span class="hm-dot"></span>') + '</div>';
   });
   html += '</div>';
 
   // Reset button
-  html += '<div class="pd-reset"><button class="btn-danger-sm" onclick="if(confirm(\'Xóa toàn bộ tiến trình?\')) { resetAllProgress(); goHome(); }">🗑️ Xóa tiến trình (Reset)</button></div>';
+  html += '<div class="pd-reset"><button class="btn-danger-sm" onclick="if(confirm(\'Xóa toàn bộ tiến trình?\')) { resetAllProgress(); goHome(); }">' + svgI('trash',14) + ' Xóa tiến trình (Reset)</button></div>';
 
   el.innerHTML = html;
   showView('parent');

@@ -157,7 +157,17 @@ main { max-width:800px; margin:0 auto; padding:16px 12px 60px; }
 .ls-examples { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:12px 0; }
 .ls-example { padding:8px 14px; background:var(--bg); border-radius:8px; font-size:.92rem; }
 .ls-props { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin:12px 0; }
-.ls-prop { padding:6px 14px; background:#fef3c7; border-radius:8px; font-size:.9rem; font-weight:600; }
+.ls-prop { padding:6px 14px; background:#fef3c7; border-radius:8px; font-size:.9rem; font-weight:600; display:inline-flex; align-items:center; gap:5px; }
+.ls-prop svg { flex-shrink:0; vertical-align:middle; }
+.um-icon { display:inline-flex; align-items:center; vertical-align:middle; }
+.unit-emoji { font-size:1.6rem; }
+.r-time { display:flex; align-items:center; justify-content:center; gap:4px; }
+.r-time svg { flex-shrink:0; }
+.r-boss-win { display:flex; align-items:center; justify-content:center; gap:8px; }
+.r-boss-win svg { flex-shrink:0; }
+.btn-danger-sm { display:inline-flex; align-items:center; gap:6px; }
+.btn-danger-sm svg { flex-shrink:0; }
+.fb-icon svg { width:48px; height:48px; }
 
 .ls-compare { display:flex; align-items:center; justify-content:center; gap:12px; margin:16px 0; flex-wrap:wrap; }
 .ls-cmp-box { flex:1; min-width:140px; text-align:center; padding:16px; background:var(--bg); border-radius:12px; }
@@ -271,8 +281,10 @@ main { max-width:800px; margin:0 auto; padding:16px 12px 60px; }
 .pd-badges { display:flex; gap:8px; flex-wrap:wrap; }
 .pd-badge { display:flex; align-items:center; gap:4px; padding:6px 12px; background:var(--bg); border-radius:20px; font-size:.85rem; font-weight:600; }
 
-.pd-heatmap { display:flex; gap:3px; flex-wrap:wrap; margin:8px 0; }
-.pd-day { font-size:.7rem; }
+.pd-heatmap { display:flex; gap:4px; flex-wrap:wrap; margin:8px 0; }
+.pd-day { display:flex; align-items:center; }
+.hm-dot { display:block; width:14px; height:14px; border-radius:3px; background:var(--border); }
+.hm-dot.hm-active { background:#22c55e; box-shadow:0 0 4px rgba(34,197,94,.4); }
 
 .pd-reset { text-align:center; margin-top:24px; }
 .btn-danger-sm { padding:8px 16px; background:#fee2e2; color:var(--red); border:1px solid #fca5a5; border-radius:8px; font-size:.82rem; cursor:pointer; font-family:var(--font); }
