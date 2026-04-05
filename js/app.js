@@ -63,14 +63,53 @@ const WORLD_SVGS = {
   world5: '<svg viewBox="0 0 80 80" class="world-svg"><rect x="6" y="20" width="68" height="42" rx="10" fill="#ef4444" opacity=".12"/><text x="10" y="54" font-size="34" font-weight="900" fill="#ef4444" font-family="Nunito,sans-serif">100</text><path d="M58 8 L62 2 L66 8Z" fill="#f59e0b"/><circle cx="62" cy="14" r="2" fill="#f59e0b"/><path d="M14 8 L18 2 L22 8Z" fill="#22c55e"/><circle cx="18" cy="14" r="2" fill="#22c55e"/></svg>',
 };
 
-// SVG icons for UI elements
+// ── Complete SVG Icon System ──
+function svgI(name, size) {
+  const s = size || 18;
+  const icons = {
+    // Navigation
+    back:    '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>',
+    home:    '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+    retry:   '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>',
+
+    // Stats (colored)
+    star:     '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="#f59e0b" stroke="#d97706" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+    starEmpty:'<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="#d4d4d8" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+    xp:       '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><polygon points="12 2 15 10 22 10 16 15 18 22 12 18 6 22 8 15 2 10 9 10" fill="#8b5cf6" opacity=".9"/><circle cx="12" cy="12" r="4" fill="#c4b5fd"/></svg>',
+    fire:     '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><path d="M12 23c-4.97 0-7-3.58-7-7 0-3.07 2.17-5.54 3.5-6.8.37-.35.95-.07.95.43v1.87c0 .83.68 1.5 1.5 1.5.65 0 1.2-.42 1.4-1 .65-1.87.15-4.14-1.1-6 3.16.6 5.75 3.53 5.75 7 0 2.72-1.5 5.09-4 6.32" fill="#ef4444"/><path d="M14.5 20c-1.38 0-2.5-1.12-2.5-2.5 0-1.98 2.5-3.5 2.5-3.5s2.5 1.52 2.5 3.5c0 1.38-1.12 2.5-2.5 2.5z" fill="#f59e0b"/></svg>',
+    level:    '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" fill="#3b82f6" opacity=".15"/><text x="12" y="16.5" text-anchor="middle" font-size="11" font-weight="800" fill="#3b82f6" font-family="Nunito,sans-serif">Lv</text></svg>',
+    brain:    '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><path d="M12 2C9.24 2 7 4.24 7 7c0 1.1.36 2.14 1 3-1.76 1.08-3 3-3 5.2C5 18.44 7.69 21 11 21h2c3.31 0 6-2.56 6-5.8 0-2.2-1.24-4.12-3-5.2.64-.86 1-1.9 1-3 0-2.76-2.24-5-5-5z" fill="#8b5cf6" opacity=".8"/><path d="M12 2v8M9 7l3 3M15 7l-3 3" stroke="#c4b5fd" stroke-width="1.5" stroke-linecap="round"/></svg>',
+    parent:   '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>',
+
+    // Status
+    check:   '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#22c55e"/><path d="M8 12l3 3 5-6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    play:    '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#3b82f6"/><polygon points="10 8 16 12 10 16" fill="#fff"/></svg>',
+    lock:    '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="#a1a1aa" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/><circle cx="12" cy="16" r="1" fill="#a1a1aa"/></svg>',
+    crown:   '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><path d="M2 20h20l-2-8-4 3-4-6-4 6-4-3z" fill="#f59e0b"/><rect x="2" y="20" width="20" height="2" rx="1" fill="#d97706"/><circle cx="12" cy="5" r="2" fill="#f59e0b"/><circle cx="3" cy="10" r="1.5" fill="#f59e0b"/><circle cx="21" cy="10" r="1.5" fill="#f59e0b"/></svg>',
+    cross:   '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#ef4444"/><path d="M8 8l8 8M16 8l-8 8" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>',
+
+    // Unit menu
+    book:    '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" rx="2" fill="#3b82f6" opacity=".15"/><path d="M4 4c0-1.1.9-2 2-2h12a2 2 0 012 2v16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" stroke="#3b82f6" stroke-width="2"/><path d="M8 7h8M8 11h6M8 15h4" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/></svg>',
+    pencil:  '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><path d="M17 3l4 4L7 21H3v-4L17 3z" fill="#f59e0b" opacity=".2" stroke="#f59e0b" stroke-width="2" stroke-linejoin="round"/><path d="M14 6l4 4" stroke="#f59e0b" stroke-width="2"/></svg>',
+    quiz:    '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" fill="#22c55e" opacity=".15" stroke="#22c55e" stroke-width="2"/><path d="M8 12l3 3 5-6" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    chart:   '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"><rect x="3" y="12" width="4" height="9" rx="1" fill="#8b5cf6" opacity=".3"/><rect x="10" y="6" width="4" height="15" rx="1" fill="#8b5cf6" opacity=".5"/><rect x="17" y="2" width="4" height="19" rx="1" fill="#8b5cf6" opacity=".7"/></svg>',
+    cap:     '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><path d="M12 3L2 9l10 6 10-6-10-6z" fill="#3b82f6"/><path d="M20 9v7" stroke="#3b82f6" stroke-width="2"/><path d="M6 11.5v4.5c0 2 2.69 3 6 3s6-1 6-3v-4.5" stroke="#3b82f6" stroke-width="2"/></svg>',
+  };
+  return icons[name] || '';
+}
+
+// Render star rating as SVG
+function svgStars(count, max) {
+  max = max || 3;
+  let h = '';
+  for (let i = 0; i < max; i++) h += svgI(i < count ? 'star' : 'starEmpty', 20);
+  return '<span class="svg-stars">' + h + '</span>';
+}
+
+// Keep backward compat
 const UI_ICONS = {
-  back: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>',
-  home: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
-  star: '<svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
-  brain: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"><path d="M12 2a5 5 0 015 5c0 .83-.2 1.61-.57 2.3A5 5 0 0120 14a5 5 0 01-4 4.9V22h-2v-3.1A5 5 0 0110 14a5 5 0 01-2-3.7A5 5 0 017 7a5 5 0 015-5z"/><path d="M12 2v7"/><path d="M8.5 8.5L12 9"/><path d="M15.5 8.5L12 9"/></svg>',
-  parent: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>',
-  retry: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>',
+  back: svgI('back'), home: svgI('home'), star: svgI('star'),
+  brain: svgI('brain',22), parent: svgI('parent'), retry: svgI('retry'),
 };
 
 // ── Navigation ──
@@ -119,8 +158,8 @@ function renderWorldMap() {
       (unlocked ?
         '<div class="world-progress"><div class="wp-bar"><div class="wp-fill" style="width:' + pct + '%"></div></div>' +
         '<span class="wp-text">' + doneUnits + '/' + totalUnits + ' bài</span></div>' +
-        '<div class="world-stars">⭐ ' + starCount + '/' + maxStars + '</div>'
-        : '<div class="world-locked">🔒 Hoàn thành thế giới trước</div>'
+        '<div class="world-stars">' + svgI('star',14) + ' ' + starCount + '/' + maxStars + '</div>'
+        : '<div class="world-locked">' + svgI('lock',16) + ' Hoàn thành thế giới trước</div>'
       ) +
       '</div>';
   }).join('');
@@ -149,7 +188,7 @@ function openWorld(worldId) {
   list.innerHTML = currentWorld.units.map((u, idx) => {
     const stars = progress.stars[u.id] || 0;
     const done = progress.completed[u.id];
-    const starHTML = '⭐'.repeat(stars) + '☆'.repeat(3 - stars);
+    const starHTML = svgStars(stars);
     const prevDone = idx === 0 || progress.completed[currentWorld.units[idx - 1].id];
 
     return '<div class="unit-card ' + (prevDone ? '' : 'unit-locked') + '" onclick="' + (prevDone ? 'openUnit(\'' + u.id + '\')' : '') + '">' +
@@ -158,7 +197,7 @@ function openWorld(worldId) {
       '<div class="unit-name">' + u.name + '</div>' +
       '<div class="unit-stars">' + starHTML + '</div>' +
       '</div>' +
-      '<div class="unit-status">' + (done ? '✅' : prevDone ? '▶️' : '🔒') + '</div>' +
+      '<div class="unit-status">' + (done ? svgI('check',22) : prevDone ? svgI('play',22) : svgI('lock',22)) + '</div>' +
       '</div>';
   }).join('');
 
@@ -167,7 +206,7 @@ function openWorld(worldId) {
   const bossDone = progress.bossCompleted[currentWorld.id];
   document.getElementById('wdBoss').innerHTML =
     '<button class="btn-boss ' + (allDone ? '' : 'boss-locked') + '" onclick="' + (allDone ? 'startBoss()' : '') + '">' +
-    '👑 Thử Thách Cuối' + (bossDone ? ' ✅' : allDone ? '' : ' 🔒') +
+    svgI('crown',20) + ' Thử Thách Cuối' + (bossDone ? ' ' + svgI('check',18) : allDone ? '' : ' ' + svgI('lock',18)) +
     '</button>';
 
   showView('world');
@@ -185,15 +224,15 @@ function openUnit(unitId) {
 function showUnitMenu() {
   const el = document.getElementById('unitMenuContent');
   const stars = progress.stars[currentUnit.id] || 0;
-  const starHTML = '⭐'.repeat(stars) + '☆'.repeat(3 - stars);
+  const starHTML = svgStars(stars);
 
   el.innerHTML =
     '<div class="um-header"><span class="um-icon">' + currentUnit.icon + '</span> ' + currentUnit.name + '</div>' +
     '<div class="um-stars">' + starHTML + '</div>' +
     '<div class="um-buttons">' +
-    '<button class="um-btn um-lesson" onclick="startLesson()">📖 Bài Học</button>' +
-    '<button class="um-btn um-tryit" onclick="startTryIt()">✏️ Thử Làm</button>' +
-    '<button class="um-btn um-quiz" onclick="startQuiz()">📝 Kiểm Tra</button>' +
+    '<button class="um-btn um-lesson" onclick="startLesson()">' + svgI('book',24) + ' Bài Học</button>' +
+    '<button class="um-btn um-tryit" onclick="startTryIt()">' + svgI('pencil',24) + ' Thử Làm</button>' +
+    '<button class="um-btn um-quiz" onclick="startQuiz()">' + svgI('quiz',24) + ' Kiểm Tra</button>' +
     '</div>';
 
   showView('unitmenu');
@@ -333,7 +372,7 @@ function renderQuestion(mode) {
 
   const num = currentSession.current + 1;
   const total = currentSession.questions.length;
-  const modeLabel = mode === 'tryit' ? 'Thử Làm' : mode === 'boss' ? '👑 Thử Thách' : 'Kiểm Tra';
+  const modeLabel = mode === 'tryit' ? svgI('pencil',16)+' Thử Làm' : mode === 'boss' ? svgI('crown',16)+' Thử Thách' : svgI('quiz',16)+' Kiểm Tra';
 
   let html = '<div class="q-header">' +
     '<span class="q-mode">' + modeLabel + '</span>' +
@@ -356,8 +395,8 @@ function renderQuestion(mode) {
   // Answer options
   if (q.type === 'trueFalse') {
     html += '<div class="q-options">' +
-      '<button class="q-opt q-opt-tf" onclick="submitAnswer(0)">✅ Đúng</button>' +
-      '<button class="q-opt q-opt-tf" onclick="submitAnswer(1)">❌ Sai</button>' +
+      '<button class="q-opt q-opt-tf q-opt-true" onclick="submitAnswer(0)">' + svgI('check',22) + ' Đúng</button>' +
+      '<button class="q-opt q-opt-tf q-opt-false" onclick="submitAnswer(1)">' + svgI('cross',22) + ' Sai</button>' +
       '</div>';
   } else if (q.type === 'fillBlank') {
     html += '<div class="q-fill">' +
@@ -456,20 +495,20 @@ function showResults(mode) {
 
   html += '<div class="r-actions">';
   if (mode === 'quiz' && results.pct < 100) {
-    html += '<button class="btn-retry" onclick="startQuiz()">🔄 Làm lại</button>';
+    html += '<button class="btn-retry" onclick="startQuiz()">' + svgI('retry',16) + ' Làm lại</button>';
   }
   if (mode === 'boss' && results.pct < 60) {
-    html += '<button class="btn-retry" onclick="startBoss()">🔄 Thử lại</button>';
+    html += '<button class="btn-retry" onclick="startBoss()">' + svgI('retry',16) + ' Thử lại</button>';
   }
   html += '<button class="btn-back" onclick="' + (mode === 'boss' ? 'openWorld(\'' + currentWorld.id + '\')' : 'showUnitMenu()') + '">← Quay lại</button>';
-  html += '<button class="btn-home" onclick="goHome()">🏠 Trang chủ</button>';
+  html += '<button class="btn-home" onclick="goHome()">' + svgI('home',16) + ' Trang chủ</button>';
   html += '</div>';
 
   // Review answers
   html += '<div class="r-review"><h3>Xem lại các câu trả lời:</h3>';
   results.answers.forEach((a, i) => {
     const cls = a.correct ? 'rv-correct' : 'rv-wrong';
-    const icon = a.correct ? '✅' : '❌';
+    const icon = a.correct ? svgI('check',16) : svgI('cross',16);
     html += '<div class="rv-item ' + cls + '">' +
       '<span class="rv-icon">' + icon + '</span>' +
       '<span class="rv-q">Câu ' + (i + 1) + ': ' + a.question.question + '</span>' +
@@ -499,7 +538,7 @@ function openBrainGames() {
     return '<div class="bg-card" onclick="startBrainGame(\'' + bg.id + '\')">' +
       '<div class="bg-icon">' + bg.icon + '</div>' +
       '<div class="bg-info">' +
-      '<div class="bg-name">' + bg.name + (done ? ' ✅' : '') + '</div>' +
+      '<div class="bg-name">' + bg.name + (done ? ' ' + svgI('check',16) : '') + '</div>' +
       '<div class="bg-source">' + bg.source + '</div>' +
       '<div class="bg-desc">' + bg.desc + '</div>' +
       '</div></div>';
@@ -613,6 +652,15 @@ function openParent() {
 //  INIT
 // ══════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', function() {
+  // Populate SVG icons in top bar
+  const iconSlots = {
+    topCap: ['cap',18], topStarIcon: ['star',14], topXPIcon: ['xp',14],
+    topFireIcon: ['fire',14], topLvIcon: ['level',14], pdChartIcon: ['chart',20],
+  };
+  for (const [id, [name, size]] of Object.entries(iconSlots)) {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = svgI(name, size);
+  }
   updateTopBar();
   renderWorldMap();
 });

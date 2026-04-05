@@ -24,7 +24,9 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); line-he
 .top-left { display:flex; align-items:center; gap:8px; }
 .top-brand { font-weight:800; font-size:1.1rem; cursor:pointer; }
 .top-stats { display:flex; gap:12px; font-size:.82rem; font-weight:600; }
-.top-stat { display:flex; align-items:center; gap:3px; background:rgba(255,255,255,.15); padding:3px 10px; border-radius:20px; }
+.top-stat { display:flex; align-items:center; gap:4px; background:rgba(255,255,255,.15); padding:3px 10px; border-radius:20px; }
+.top-stat svg { vertical-align:middle; flex-shrink:0; }
+.top-brand svg { vertical-align:middle; margin-right:2px; }
 .top-right { display:flex; gap:8px; }
 .top-btn { background:rgba(255,255,255,.2); border:none; color:#fff; padding:6px 12px; border-radius:20px; font-size:.82rem; cursor:pointer; font-family:var(--font); font-weight:600; transition:background .2s; }
 .top-btn:hover { background:rgba(255,255,255,.35); }
@@ -78,6 +80,26 @@ main { max-width:800px; margin:0 auto; padding:16px 12px 60px; }
 .unit-info { flex:1; }
 .unit-name { font-weight:700; font-size:1rem; }
 .unit-stars { font-size:.9rem; letter-spacing:2px; }
+.svg-stars { display:inline-flex; gap:2px; vertical-align:middle; }
+.svg-stars svg { vertical-align:middle; }
+.world-locked { display:flex; align-items:center; gap:4px; justify-content:center; }
+.world-locked svg { flex-shrink:0; }
+.world-stars { display:flex; align-items:center; gap:4px; justify-content:center; }
+.world-stars svg { flex-shrink:0; }
+.unit-status { display:flex; align-items:center; }
+.btn-boss { display:flex; align-items:center; justify-content:center; gap:8px; }
+.btn-boss svg { flex-shrink:0; }
+.q-mode { display:flex; align-items:center; gap:4px; }
+.q-mode svg { flex-shrink:0; }
+.q-opt-tf { display:flex; align-items:center; justify-content:center; gap:8px; }
+.q-opt-tf svg { flex-shrink:0; }
+.r-actions button { display:inline-flex; align-items:center; gap:6px; }
+.r-actions button svg { flex-shrink:0; }
+.rv-icon { display:flex; align-items:center; }
+.bg-name { display:flex; align-items:center; gap:4px; }
+.bg-name svg { flex-shrink:0; }
+.um-btn { display:flex; align-items:center; justify-content:center; gap:10px; }
+.um-btn svg { flex-shrink:0; }
 .unit-status { font-size:1.4rem; }
 
 .btn-boss { display:block; width:100%; padding:16px; background:linear-gradient(135deg,var(--yellow),var(--red)); color:#fff; border:none; border-radius:12px; font-size:1.1rem; font-weight:800; cursor:pointer; margin-top:12px; font-family:var(--font); transition:all .2s; box-shadow:var(--shadow); }

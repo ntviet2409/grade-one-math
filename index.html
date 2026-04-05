@@ -13,13 +13,13 @@
 <!-- TOP BAR -->
 <div class="top-bar">
   <div class="top-left">
-    <div class="top-brand" onclick="goHome()">🎓 Toán Lớp 1</div>
+    <div class="top-brand" onclick="goHome()"><span id="topCap"></span> Toán Lớp 1</div>
   </div>
   <div class="top-stats">
-    <span class="top-stat">⭐ <span id="topStars">0</span></span>
-    <span class="top-stat">💎 <span id="topXP">0</span> XP</span>
-    <span class="top-stat">🔥 <span id="topStreak">0</span></span>
-    <span class="top-stat">Lv <span id="topLevel">1</span></span>
+    <span class="top-stat"><span id="topStarIcon"></span> <span id="topStars">0</span></span>
+    <span class="top-stat"><span id="topXPIcon"></span> <span id="topXP">0</span> XP</span>
+    <span class="top-stat"><span id="topFireIcon"></span> <span id="topStreak">0</span></span>
+    <span class="top-stat"><span id="topLvIcon"></span> <span id="topLevel">1</span></span>
   </div>
   <div class="top-right">
     <button class="top-btn" onclick="openParent()"><span class="top-icon-parent"></span> Phụ huynh</button>
@@ -98,7 +98,7 @@
 <!-- ═══════════════════════════════════ -->
 <div class="view" id="view-parent">
   <div class="back-row"><button class="back-btn" onclick="goHome()">← Trang chủ</button></div>
-  <div class="pd-title">📊 Bảng Theo Dõi — Phụ Huynh</div>
+  <div class="pd-title"><span id="pdChartIcon"></span> Bảng Theo Dõi — Phụ Huynh</div>
   <div class="section-card" id="parentContent"></div>
 </div>
 
