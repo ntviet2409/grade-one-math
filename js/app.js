@@ -129,6 +129,11 @@ function svgI(name, size) {
     search:  '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"><circle cx="10" cy="10" r="7"/><path d="M16 16l5 5"/></svg>',
     lightbulb:'<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><path d="M9 21h6M12 3a6 6 0 014 10.5V17H8v-3.5A6 6 0 0112 3z" fill="#f59e0b" opacity=".3" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/></svg>',
     corner:  '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none"><path d="M4 20V8l8-6 8 6v12" stroke="#8b5cf6" stroke-width="2"/><circle cx="4" cy="20" r="2" fill="#8b5cf6"/><circle cx="12" cy="2" r="2" fill="#ef4444"/><circle cx="20" cy="20" r="2" fill="#8b5cf6"/></svg>',
+    save:    '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>',
+    download:'<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
+    upload:  '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>',
+    note:    '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg>',
+    close:   '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
   };
   return icons[name] || '';
 }
@@ -690,11 +695,199 @@ function openParent() {
   });
   html += '</div>';
 
+  // Export / Import
+  html += '<h3 class="pd-section">' + svgI('save',16) + ' Sao lưu & Khôi phục:</h3>' +
+    '<div class="pd-backup">' +
+    '<button class="pd-backup-btn" onclick="exportProgress()">' + svgI('download',16) + ' Tải xuống tiến trình</button>' +
+    '<button class="pd-backup-btn" onclick="document.getElementById(\'importFile\').click()">' + svgI('upload',16) + ' Tải lên tiến trình</button>' +
+    '<input type="file" id="importFile" accept=".json" onchange="importProgress(event)" style="display:none">' +
+    '</div>';
+
   // Reset button
   html += '<div class="pd-reset"><button class="btn-danger-sm" onclick="if(confirm(\'Xóa toàn bộ tiến trình?\')) { resetAllProgress(); goHome(); }">' + svgI('trash',14) + ' Xóa tiến trình (Reset)</button></div>';
 
   el.innerHTML = html;
   showView('parent');
+}
+
+// ══════════════════════════════════════════
+//  EXPORT / IMPORT PROGRESS
+// ══════════════════════════════════════════
+function exportProgress() {
+  const data = {
+    version: 1,
+    app: 'math-hub-grade1',
+    exportedAt: new Date().toISOString(),
+    progress: progress,
+    notes: getNotes(),
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  const today = new Date().toISOString().slice(0,10);
+  a.download = 'toan-lop1-progress-' + today + '.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function importProgress(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (!data.progress || data.app !== 'math-hub-grade1') {
+        alert('File không đúng định dạng!');
+        return;
+      }
+      const doMerge = progress.xp > 0 && confirm(
+        'Bạn đã có tiến trình hiện tại.\n\nOK = Gộp (giữ cả hai)\nCancel = Ghi đè (thay bằng file)'
+      );
+      if (doMerge) {
+        // Merge: keep the best of both
+        const imp = data.progress;
+        progress.xp = Math.max(progress.xp, imp.xp || 0);
+        progress.level = Math.max(progress.level, imp.level || 1);
+        progress.bestStreak = Math.max(progress.bestStreak, imp.bestStreak || 0);
+        progress.totalCorrect += (imp.totalCorrect || 0);
+        progress.totalWrong += (imp.totalWrong || 0);
+        // Stars: keep best
+        for (const [k, v] of Object.entries(imp.stars || {})) {
+          progress.stars[k] = Math.max(progress.stars[k] || 0, v);
+        }
+        for (const [k, v] of Object.entries(imp.completed || {})) {
+          if (v) progress.completed[k] = true;
+        }
+        for (const [k, v] of Object.entries(imp.bossCompleted || {})) {
+          if (v) progress.bossCompleted[k] = true;
+        }
+        for (const [k, v] of Object.entries(imp.brainGames || {})) {
+          if (v.completed) progress.brainGames[k] = v;
+        }
+        (imp.badges || []).forEach(b => {
+          if (!progress.badges.includes(b)) progress.badges.push(b);
+        });
+        for (const [k, v] of Object.entries(imp.quizHistory || {})) {
+          const existing = progress.quizHistory[k];
+          if (!existing || v.bestPct > existing.bestPct) progress.quizHistory[k] = v;
+        }
+        for (const [k, v] of Object.entries(imp.dailyDone || {})) {
+          if (v) progress.dailyDone[k] = true;
+        }
+      } else {
+        // Replace
+        Object.assign(progress, data.progress);
+      }
+      // Import notes
+      if (data.notes && data.notes.length) {
+        const existing = getNotes();
+        const existingIds = new Set(existing.map(n => n.id));
+        data.notes.forEach(n => {
+          if (!existingIds.has(n.id)) existing.push(n);
+        });
+        saveNotes(existing);
+      }
+      saveProgress(progress);
+      alert('Đã tải lên thành công! (' + (doMerge ? 'Gộp' : 'Ghi đè') + ')');
+      goHome();
+    } catch(err) {
+      alert('Lỗi đọc file: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+// ══════════════════════════════════════════
+//  NOTES
+// ══════════════════════════════════════════
+const NOTES_KEY = 'math-hub-notes';
+function getNotes() {
+  try { return JSON.parse(localStorage.getItem(NOTES_KEY) || '[]'); } catch(e) { return []; }
+}
+function saveNotes(notes) {
+  localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+  updateNotesBadge();
+}
+
+function addNote() {
+  const input = document.getElementById('noteInput');
+  const text = input.value.trim();
+  if (!text) return;
+  const tag = document.getElementById('noteTagSelect').value;
+  const section = document.getElementById('noteSectionSelect').value;
+  const notes = getNotes();
+  notes.unshift({ id: Date.now(), text, tag, section, date: new Date().toISOString(), resolved: false });
+  saveNotes(notes);
+  input.value = '';
+  renderNotes();
+}
+
+function deleteNote(id) {
+  saveNotes(getNotes().filter(n => n.id !== id));
+  renderNotes();
+}
+
+function toggleNoteResolved(id) {
+  const notes = getNotes();
+  const n = notes.find(n => n.id === id);
+  if (n) n.resolved = !n.resolved;
+  saveNotes(notes);
+  renderNotes();
+}
+
+function renderNotes(filterTag) {
+  const notes = getNotes();
+  const list = document.getElementById('notesList');
+  const tags = ['all','question','issue','tip','general'];
+  const tagLabels = { all:'Tất cả', question:'Câu hỏi', issue:'Khó khăn', tip:'Mẹo', general:'Chung' };
+
+  let html = '<div class="notes-filter">';
+  tags.forEach(t => {
+    const count = t === 'all' ? notes.length : notes.filter(n => n.tag === t).length;
+    const active = (filterTag || 'all') === t;
+    html += '<button class="nf-chip ' + (active ? 'nf-active' : '') + '" onclick="renderNotes(\'' + t + '\')">' + tagLabels[t] + ' <span class="nf-count">' + count + '</span></button>';
+  });
+  html += '</div>';
+
+  const filtered = (!filterTag || filterTag === 'all') ? notes : notes.filter(n => n.tag === filterTag);
+
+  if (filtered.length === 0) {
+    html += '<div class="notes-empty">' + svgI('pencil',24) + '<br>Chưa có ghi chú.<br><small>Thêm ghi chú về bài khó, câu hỏi, hoặc mẹo hay!</small></div>';
+  } else {
+    filtered.forEach(n => {
+      const d = new Date(n.date);
+      const ds = d.getDate() + '/' + (d.getMonth()+1) + ' ' + d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0');
+      html += '<div class="note-item ' + (n.resolved ? 'note-resolved' : '') + '">' +
+        '<div class="note-head"><span class="note-tag nt-' + n.tag + '">' + tagLabels[n.tag] + '</span><span class="note-date">' + ds + '</span></div>' +
+        '<div class="note-body">' + n.text.replace(/</g,'&lt;') + '</div>' +
+        (n.section ? '<div class="note-section">' + n.section + '</div>' : '') +
+        '<div class="note-actions">' +
+        '<button class="na-btn" onclick="toggleNoteResolved(' + n.id + ')">' + (n.resolved ? svgI('retry',12)+' Mở lại' : svgI('check',12)+' Xong') + '</button>' +
+        '<button class="na-btn na-del" onclick="if(confirm(\'Xóa ghi chú?\'))deleteNote(' + n.id + ')">' + svgI('trash',12) + '</button>' +
+        '</div></div>';
+    });
+  }
+  list.innerHTML = html;
+}
+
+function toggleNotesPanel() {
+  const panel = document.getElementById('notesPanel');
+  panel.classList.toggle('notes-open');
+  if (panel.classList.contains('notes-open')) renderNotes();
+}
+
+function updateNotesBadge() {
+  const count = getNotes().filter(n => !n.resolved).length;
+  const badge = document.getElementById('notesBadge');
+  if (badge) {
+    badge.textContent = count > 99 ? '99+' : count;
+    badge.style.display = count > 0 ? 'flex' : 'none';
+  }
 }
 
 // ══════════════════════════════════════════
@@ -712,4 +905,5 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   updateTopBar();
   renderWorldMap();
+  updateNotesBadge();
 });
