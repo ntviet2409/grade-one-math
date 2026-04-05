@@ -22,7 +22,7 @@
     <span class="top-stat">Lv <span id="topLevel">1</span></span>
   </div>
   <div class="top-right">
-    <button class="top-btn" onclick="openParent()">👨‍👩‍👦 Phụ huynh</button>
+    <button class="top-btn" onclick="openParent()"><span class="top-icon-parent"></span> Phụ huynh</button>
   </div>
 </div>
 
@@ -37,8 +37,8 @@
   <div class="world-grid" id="worldGrid"></div>
 
   <div class="map-actions">
-    <button class="map-btn" onclick="openBrainGames()">
-      <span class="map-btn-icon">🧠</span>
+    <button class="map-btn map-btn-brain" onclick="openBrainGames()">
+      <span class="map-btn-icon" id="brainIcon"></span>
       <span>Trò Chơi Tư Duy <small>(<span id="brainGameCount">0</span> hoàn thành)</small></span>
     </button>
   </div>

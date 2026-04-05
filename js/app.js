@@ -47,11 +47,31 @@ function renderCSSShape(type) {
     triangle: '<div class="css-shape css-triangle"></div>',
     square: '<div class="css-shape css-square"></div>',
     rectangle: '<div class="css-shape css-rectangle"></div>',
+    cylinder: '<div class="css-shape css-cylinder"><div class="cyl-top"></div><div class="cyl-body"></div></div>',
     cube: '<div class="css-shape css-cube"><div class="cube-face front"></div><div class="cube-face top"></div><div class="cube-face right"></div></div>',
     box: '<div class="css-shape css-box"><div class="box-face front"></div><div class="box-face top"></div><div class="box-face right"></div></div>',
   };
   return shapes[type] || '';
 }
+
+// ── SVG World Icons (replace flat emoji) ──
+const WORLD_SVGS = {
+  world1: '<svg viewBox="0 0 80 80" class="world-svg"><circle cx="22" cy="50" r="16" fill="#3b82f6" opacity=".8"/><rect x="42" y="34" width="28" height="28" rx="4" fill="#22c55e" opacity=".8"/><polygon points="40,12 52,38 28,38" fill="#f59e0b" opacity=".9"/><circle cx="58" cy="22" r="6" fill="#ec4899" opacity=".7"/></svg>',
+  world2: '<svg viewBox="0 0 80 80" class="world-svg"><text x="8" y="48" font-size="36" font-weight="900" fill="#3b82f6" font-family="Nunito,sans-serif">1</text><text x="28" y="58" font-size="36" font-weight="900" fill="#22c55e" font-family="Nunito,sans-serif">2</text><text x="50" y="42" font-size="36" font-weight="900" fill="#f59e0b" font-family="Nunito,sans-serif">3</text><circle cx="18" cy="18" r="8" fill="#ec4899" opacity=".6"/><circle cx="65" cy="60" r="6" fill="#8b5cf6" opacity=".6"/></svg>',
+  world3: '<svg viewBox="0 0 80 80" class="world-svg"><rect x="10" y="25" width="60" height="32" rx="16" fill="#22c55e" opacity=".15"/><text x="14" y="52" font-size="32" font-weight="900" fill="#22c55e" font-family="Nunito,sans-serif">+</text><text x="44" y="52" font-size="32" font-weight="900" fill="#ef4444" font-family="Nunito,sans-serif">−</text><circle cx="62" cy="16" r="5" fill="#f59e0b"/><circle cx="15" cy="14" r="4" fill="#3b82f6"/><path d="M30 10 L34 4 L38 10 L36 10 L36 18 L32 18 L32 10Z" fill="#f59e0b" opacity=".7"/></svg>',
+  world4: '<svg viewBox="0 0 80 80" class="world-svg"><circle cx="40" cy="40" r="30" fill="none" stroke="#8b5cf6" stroke-width="4"/><circle cx="40" cy="40" r="2.5" fill="#8b5cf6"/><line x1="40" y1="40" x2="40" y2="22" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round"/><line x1="40" y1="40" x2="54" y2="40" stroke="#ec4899" stroke-width="2" stroke-linecap="round"/><text x="37" y="18" font-size="6" fill="#8b5cf6" font-weight="700" font-family="sans-serif">12</text><text x="57" y="43" font-size="6" fill="#8b5cf6" font-weight="700" font-family="sans-serif">3</text><text x="38" y="70" font-size="6" fill="#8b5cf6" font-weight="700" font-family="sans-serif">6</text><text x="14" y="43" font-size="6" fill="#8b5cf6" font-weight="700" font-family="sans-serif">9</text></svg>',
+  world5: '<svg viewBox="0 0 80 80" class="world-svg"><rect x="6" y="20" width="68" height="42" rx="10" fill="#ef4444" opacity=".12"/><text x="10" y="54" font-size="34" font-weight="900" fill="#ef4444" font-family="Nunito,sans-serif">100</text><path d="M58 8 L62 2 L66 8Z" fill="#f59e0b"/><circle cx="62" cy="14" r="2" fill="#f59e0b"/><path d="M14 8 L18 2 L22 8Z" fill="#22c55e"/><circle cx="18" cy="14" r="2" fill="#22c55e"/></svg>',
+};
+
+// SVG icons for UI elements
+const UI_ICONS = {
+  back: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>',
+  home: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+  star: '<svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+  brain: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"><path d="M12 2a5 5 0 015 5c0 .83-.2 1.61-.57 2.3A5 5 0 0120 14a5 5 0 01-4 4.9V22h-2v-3.1A5 5 0 0110 14a5 5 0 01-2-3.7A5 5 0 017 7a5 5 0 015-5z"/><path d="M12 2v7"/><path d="M8.5 8.5L12 9"/><path d="M15.5 8.5L12 9"/></svg>',
+  parent: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>',
+  retry: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>',
+};
 
 // ── Navigation ──
 function showView(view) {
@@ -92,8 +112,9 @@ function renderWorldMap() {
     const maxStars = totalUnits * 3;
     const pct = totalUnits > 0 ? Math.round(doneUnits / totalUnits * 100) : 0;
 
+    const svgIcon = WORLD_SVGS[wp.id] || '<div class="world-emoji">' + wp.icon + '</div>';
     return '<div class="world-card ' + (unlocked ? 'unlocked' : 'locked') + '" style="--wcolor:' + wp.color + '" onclick="' + (unlocked && world ? 'openWorld(\'' + wp.id + '\')' : '') + '">' +
-      '<div class="world-icon">' + wp.icon + '</div>' +
+      '<div class="world-icon">' + svgIcon + '</div>' +
       '<div class="world-name">' + wp.name + '</div>' +
       (unlocked ?
         '<div class="world-progress"><div class="wp-bar"><div class="wp-fill" style="width:' + pct + '%"></div></div>' +
@@ -107,6 +128,7 @@ function renderWorldMap() {
   // Brain games button
   const bgDone = Object.values(progress.brainGames).filter(g => g.completed).length;
   document.getElementById('brainGameCount').textContent = bgDone;
+  document.getElementById('brainIcon').innerHTML = UI_ICONS.brain;
 
   showView('map');
 }
