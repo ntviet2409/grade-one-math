@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toán Lớp 1 — Học Vui Mỗi Ngày</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=1">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-left">
+    <div class="top-brand" onclick="goHome()">🎓 Toán Lớp 1</div>
+  </div>
+  <div class="top-stats">
+    <span class="top-stat">⭐ <span id="topStars">0</span></span>
+    <span class="top-stat">💎 <span id="topXP">0</span> XP</span>
+    <span class="top-stat">🔥 <span id="topStreak">0</span></span>
+    <span class="top-stat">Lv <span id="topLevel">1</span></span>
+  </div>
+  <div class="top-right">
+    <button class="top-btn" onclick="openParent()">👨‍👩‍👦 Phụ huynh</button>
+  </div>
+</div>
+
+<main>
+
+<!-- ═══════════════════════════════════ -->
+<!--  VIEW: WORLD MAP                   -->
+<!-- ═══════════════════════════════════ -->
+<div class="view" id="view-map">
+  <div class="map-title">🗺️ Bản Đồ Học Tập</div>
+  <div class="map-subtitle">Chọn một thế giới để bắt đầu học!</div>
+  <div class="world-grid" id="worldGrid"></div>
+
+  <div class="map-actions">
+    <button class="map-btn" onclick="openBrainGames()">
+      <span class="map-btn-icon">🧠</span>
+      <span>Trò Chơi Tư Duy <small>(<span id="brainGameCount">0</span> hoàn thành)</small></span>
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!--  VIEW: WORLD DETAIL (Units)        -->
+<!-- ═══════════════════════════════════ -->
+<div class="view" id="view-world">
+  <div class="back-row"><button class="back-btn" onclick="goHome()">← Trang chủ</button></div>
+  <div class="section-card">
+    <div class="wd-header" id="wdHeader"></div>
+    <div id="wdUnits"></div>
+    <div id="wdBoss"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!--  VIEW: UNIT MENU                   -->
+<!-- ═══════════════════════════════════ -->
+<div class="view" id="view-unitmenu">
+  <div class="back-row"><button class="back-btn" onclick="openWorld(currentWorld?.id)">← Quay lại</button></div>
+  <div class="section-card" id="unitMenuContent"></div>
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!--  VIEW: LESSON                      -->
+<!-- ═══════════════════════════════════ -->
+<div class="view" id="view-lesson">
+  <div class="back-row">
+    <button class="back-btn" onclick="showUnitMenu()">← Quay lại</button>
+    <span id="lessonProgress" style="float:right;font-size:.85rem;color:#64748b;"></span>
+  </div>
+  <div id="lessonContent"></div>
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!--  VIEW: QUIZ / TRY IT / BOSS       -->
+<!-- ═══════════════════════════════════ -->
+<div class="view" id="view-quiz">
+  <div class="back-row"><button class="back-btn" onclick="showUnitMenu()">← Quay lại</button></div>
+  <div class="section-card" id="quizContent"></div>
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!--  VIEW: BRAIN GAMES LIST            -->
+<!-- ═══════════════════════════════════ -->
+<div class="view" id="view-braingames">
+  <div class="back-row"><button class="back-btn" onclick="goHome()">← Trang chủ</button></div>
+  <div class="bg-title">🧠 Trò Chơi Tư Duy</div>
+  <div class="bg-subtitle">Rèn luyện tư duy logic từ chương trình Singapore Math & Mỹ</div>
+  <div id="bgList"></div>
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!--  VIEW: PARENT DASHBOARD            -->
+<!-- ═══════════════════════════════════ -->
+<div class="view" id="view-parent">
+  <div class="back-row"><button class="back-btn" onclick="goHome()">← Trang chủ</button></div>
+  <div class="pd-title">📊 Bảng Theo Dõi — Phụ Huynh</div>
+  <div class="section-card" id="parentContent"></div>
+</div>
+
+</main>
+
+<script src="js/data.js?v=1"></script>
+<script src="js/engine.js?v=1"></script>
+<script src="js/app.js?v=1"></script>
+</body>
+</html>
