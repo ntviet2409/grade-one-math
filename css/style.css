@@ -231,12 +231,91 @@ main { max-width:800px; margin:0 auto; padding:16px 12px 60px; }
 .back-btn { background:none; border:none; font-size:.9rem; color:var(--primary); cursor:pointer; font-weight:600; font-family:var(--font); padding:6px 0; }
 .back-btn:hover { text-decoration:underline; }
 
-/* ── Responsive ── */
+/* ── Responsive: Tablet (768px - 1024px) ── */
+@media(max-width:1024px) {
+  main { max-width:100%; padding:12px 10px 60px; }
+  .world-grid { grid-template-columns:repeat(2,1fr); }
+}
+
+/* ── Responsive: Mobile (max 600px) ── */
 @media(max-width:600px) {
-  .pd-grid { grid-template-columns:repeat(2,1fr); }
-  .q-question { font-size:1.05rem; }
-  .q-opt { padding:14px 16px; font-size:.95rem; }
+  /* Top bar */
+  .top-bar { padding:8px 10px; flex-wrap:wrap; gap:6px; height:auto; }
+  .top-brand { font-size:.95rem; }
+  .top-stats { gap:4px; order:3; width:100%; justify-content:center; }
+  .top-stat { padding:2px 6px; font-size:.72rem; }
+  .top-right { margin-left:auto; }
+  .top-btn { padding:4px 10px; font-size:.78rem; }
+
+  /* World map */
+  .world-grid { grid-template-columns:1fr; }
+  .world-card { padding:16px; flex-direction:row; gap:12px; }
+  .world-icon { font-size:2rem; }
+  .world-name { font-size:.95rem; text-align:left; }
+  .map-title { font-size:1.15rem; }
+  .map-actions { flex-direction:column; }
+  .map-btn { justify-content:center; }
+
+  /* World detail */
+  .wd-header { font-size:1rem; padding:12px 14px; }
+  .unit-card { padding:12px; gap:10px; }
+  .unit-icon { font-size:1.4rem; }
+  .unit-name { font-size:.92rem; }
+  .btn-boss { padding:14px; font-size:1rem; }
+
+  /* Unit menu */
+  .um-header { font-size:1.1rem; }
+  .um-btn { padding:16px; font-size:1rem; }
+
+  /* Lessons */
+  .lesson-step { padding:18px 14px; min-height:200px; }
+  .ls-title { font-size:1.1rem; }
+  .ls-text { font-size:.95rem; }
+  .ls-visual-big { font-size:2.2rem; letter-spacing:4px; }
   .ls-emoji { font-size:2rem; }
-  .top-stats { gap:6px; }
-  .top-stat { padding:2px 6px; font-size:.75rem; }
+  .ls-items { gap:10px; }
+  .ls-item { padding:8px 14px; }
+  .ls-compare { flex-direction:column; gap:8px; }
+  .ls-cmp-vs { margin:4px 0; }
+  .ls-table { font-size:.88rem; }
+  .ls-table th, .ls-table td { padding:6px; }
+  .ls-points { font-size:.95rem; padding-left:18px; }
+  .btn-nav { padding:10px 18px; font-size:.92rem; }
+
+  /* Quiz */
+  .q-question { font-size:1.05rem; }
+  .q-opt { padding:14px 16px; font-size:.95rem; min-height:48px; }
+  .q-opt-tf { font-size:1.05rem; }
+  .q-items { font-size:1.4rem; }
+  .q-sequence { gap:4px; }
+  .q-seq-item { font-size:1.2rem; padding:4px 6px; }
+  .q-input { width:80px; padding:10px; font-size:1.3rem; }
+  .q-submit { padding:10px 18px; font-size:1rem; }
+
+  /* Feedback */
+  .feedback { padding:20px 14px; }
+  .fb-icon { font-size:2.2rem; }
+  .fb-text { font-size:1.05rem; }
+  .fb-next { padding:12px 22px; font-size:.95rem; }
+
+  /* Results */
+  .r-stars { font-size:2rem; letter-spacing:4px; }
+  .r-score { font-size:1.6rem; }
+  .r-actions { flex-direction:column; gap:8px; }
+  .r-actions button { width:100%; }
+  .rv-item { flex-direction:column; gap:4px; font-size:.82rem; }
+
+  /* Brain games */
+  .bg-card { padding:12px; gap:10px; }
+  .bg-icon { font-size:1.5rem; width:40px; height:40px; }
+  .bg-name { font-size:.92rem; }
+
+  /* Parent dashboard */
+  .pd-grid { grid-template-columns:repeat(2,1fr); gap:6px; }
+  .pd-stat { padding:10px 6px; }
+  .pd-val { font-size:1.2rem; }
+  .pd-label { font-size:.72rem; }
+  .pd-heatmap { gap:2px; }
+  .pd-acc-row { font-size:.82rem; padding:6px 10px; }
+  .pd-badge { font-size:.78rem; padding:4px 8px; }
 }
