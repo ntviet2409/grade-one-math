@@ -2,11 +2,56 @@
 //  MATH LEARNING HUB — Main App
 // ══════════════════════════════════════════
 
-let currentView = 'map'; // map, lesson, tryit, quiz, boss, braingames, braingame, parent
+let currentView = 'map';
 let currentWorld = null;
 let currentUnit = null;
 let currentSession = null;
 let lessonStep = 0;
+
+// ── Audio Feedback ──
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+let audioCtx = null;
+function ensureAudio() { if (!audioCtx) audioCtx = new AudioCtx(); }
+
+function playSound(type) {
+  try {
+    ensureAudio();
+    if (type === 'correct') {
+      playTone(523, 0.1, 0); playTone(659, 0.1, 0.1); playTone(784, 0.15, 0.2);
+    } else if (type === 'wrong') {
+      playTone(330, 0.2, 0); playTone(262, 0.3, 0.15);
+    } else if (type === 'levelup') {
+      playTone(523, 0.1, 0); playTone(659, 0.1, 0.1); playTone(784, 0.1, 0.2); playTone(1047, 0.2, 0.3);
+    } else if (type === 'star') {
+      playTone(784, 0.15, 0); playTone(988, 0.15, 0.12); playTone(1175, 0.2, 0.24);
+    }
+  } catch(e) {}
+}
+
+function playTone(freq, dur, delay) {
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.connect(gain); gain.connect(audioCtx.destination);
+  osc.frequency.value = freq;
+  osc.type = 'sine';
+  gain.gain.setValueAtTime(0.15, audioCtx.currentTime + delay);
+  gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + delay + dur);
+  osc.start(audioCtx.currentTime + delay);
+  osc.stop(audioCtx.currentTime + delay + dur + 0.05);
+}
+
+// ── CSS Shape Renderer ──
+function renderCSSShape(type) {
+  const shapes = {
+    circle: '<div class="css-shape css-circle"></div>',
+    triangle: '<div class="css-shape css-triangle"></div>',
+    square: '<div class="css-shape css-square"></div>',
+    rectangle: '<div class="css-shape css-rectangle"></div>',
+    cube: '<div class="css-shape css-cube"><div class="cube-face front"></div><div class="cube-face top"></div><div class="cube-face right"></div></div>',
+    box: '<div class="css-shape css-box"><div class="box-face front"></div><div class="box-face top"></div><div class="box-face right"></div></div>',
+  };
+  return shapes[type] || '';
+}
 
 // ── Navigation ──
 function showView(view) {
@@ -162,11 +207,17 @@ function renderLessonStep() {
   }
   else if (step.type === 'concept') {
     html += '<h2 class="ls-title">' + step.title + '</h2>' +
-      '<p class="ls-text">' + step.text + '</p>';
+      '<p class="ls-text">' + step.text.replace(/\n/g, '<br>') + '</p>';
+    // CSS-drawn shape
+    if (step.shape) {
+      html += '<div class="ls-shape-display">' + renderCSSShape(step.shape) + '</div>';
+    }
+    // Items with proper layout (vertical for above/below, horizontal for left/right)
     if (step.items) {
-      html += '<div class="ls-items">';
+      const layoutCls = step.layout === 'vertical' ? 'ls-items-vertical' : 'ls-items-horizontal';
+      html += '<div class="ls-items ' + layoutCls + '">';
       step.items.forEach(item => {
-        html += '<div class="ls-item ls-pos-' + (item.pos || 'center') + '">' +
+        html += '<div class="ls-item">' +
           '<span class="ls-emoji">' + item.emoji + '</span>' +
           (item.label ? '<span class="ls-label">' + item.label + '</span>' : '') +
           '</div>';
@@ -332,6 +383,7 @@ function showFeedback(result) {
   const el = document.getElementById('quizContent');
   const mode = currentSession.isBoss ? 'boss' : (currentSession.unitId ? 'quiz' : 'tryit');
 
+  playSound(result.isCorrect ? 'correct' : 'wrong');
   const cls = result.isCorrect ? 'fb-correct' : 'fb-wrong';
   const icon = result.isCorrect ? '🎉' : '😊';
   const text = result.isCorrect ? 'Đúng rồi! Giỏi lắm!' : 'Chưa đúng — Xem lại nhé!';
@@ -354,6 +406,8 @@ function showResults(mode) {
   const results = currentSession.getResults();
   const el = document.getElementById('quizContent');
 
+  if (results.stars >= 2) playSound('star');
+  else if (results.stars >= 1) playSound('correct');
   const starHTML = '⭐'.repeat(results.stars) + '☆'.repeat(3 - results.stars);
   const timeStr = Math.floor(results.elapsed / 1000) + ' giây';
 

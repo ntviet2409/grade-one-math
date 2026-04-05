@@ -98,10 +98,28 @@ main { max-width:800px; margin:0 auto; padding:16px 12px 60px; }
 .ls-item { display:flex; flex-direction:column; align-items:center; gap:4px; padding:12px 20px; background:var(--bg); border-radius:12px; }
 .ls-emoji { font-size:2.5rem; }
 .ls-label { font-size:.9rem; font-weight:700; color:var(--primary); padding:3px 10px; background:#eff6ff; border-radius:8px; }
-.ls-pos-top { order:-1; }
-.ls-pos-left { order:0; }
-.ls-pos-center { order:1; }
-.ls-pos-right { order:2; }
+
+/* Layout modes for position lesson */
+.ls-items-vertical { flex-direction:column; align-items:center; gap:8px; }
+.ls-items-horizontal { flex-direction:row; justify-content:center; gap:24px; }
+
+/* CSS-drawn shapes */
+.ls-shape-display { display:flex; justify-content:center; margin:16px 0; }
+.css-shape { position:relative; }
+.css-circle { width:100px; height:100px; border-radius:50%; background:var(--primary); opacity:0.8; }
+.css-triangle { width:0; height:0; border-left:55px solid transparent; border-right:55px solid transparent; border-bottom:95px solid #f59e0b; }
+.css-square { width:90px; height:90px; background:#22c55e; border-radius:4px; }
+.css-rectangle { width:140px; height:80px; background:#8b5cf6; border-radius:4px; }
+.css-cube { width:80px; height:80px; position:relative; transform:rotateX(-15deg) rotateY(20deg); transform-style:preserve-3d; perspective:300px; }
+.cube-face { position:absolute; border:2px solid rgba(0,0,0,0.2); }
+.cube-face.front { width:80px; height:80px; background:rgba(59,130,246,0.7); }
+.cube-face.top { width:80px; height:30px; background:rgba(59,130,246,0.5); transform:rotateX(60deg) translateY(-24px); transform-origin:top; }
+.cube-face.right { width:30px; height:80px; background:rgba(59,130,246,0.4); right:-30px; top:0; position:absolute; transform:skewY(-30deg); }
+.css-box { width:120px; height:80px; position:relative; }
+.box-face { position:absolute; border:2px solid rgba(0,0,0,0.2); }
+.box-face.front { width:120px; height:80px; background:rgba(239,68,68,0.6); }
+.box-face.top { width:120px; height:25px; background:rgba(239,68,68,0.4); transform:rotateX(60deg) translateY(-18px); transform-origin:top; }
+.box-face.right { width:25px; height:80px; background:rgba(239,68,68,0.3); right:-25px; top:0; position:absolute; transform:skewY(-30deg); }
 
 .ls-examples { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:12px 0; }
 .ls-example { padding:8px 14px; background:var(--bg); border-radius:8px; font-size:.92rem; }
